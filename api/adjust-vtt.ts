@@ -1,6 +1,10 @@
 export default async (req: any, res: any) => {
     try {
         const vttUrl = req.query.vttUrl as string;
+        if (vttUrl == null) {
+            res.status(400).send('No vttUrl provided.');
+            return;
+        }
         const offset = Number.parseFloat(req.query.offset ?? 1.5);
 
         const response = await fetch(vttUrl);
