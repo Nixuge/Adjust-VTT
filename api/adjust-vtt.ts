@@ -75,9 +75,11 @@ function adjustSingleTime(time: string, offset: number): string {
 
     let baseString = (newHours > 0) ? pz(newHours)+":" : "";
 
-    return `${baseString}${pz(newMins)}:${pz(newSecs)}.${Math.round(timeDelayedMS*1000)}`
+    return `${baseString}${pz(newMins)}:${pz(newSecs)}.${pz(Math.round(timeDelayedMS*1000), 3)}`
 }
 
-function pz(num: number): string { // padZero
-    return num.toString().padStart(2, '0');
+function pz(num: number, pad?: number): string { // padZero
+    if (pad === undefined)
+        pad = 2;
+    return num.toString().padStart(pad, '0');
 }
